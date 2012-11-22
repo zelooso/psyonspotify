@@ -52,7 +52,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) {
 	return JNI_VERSION_1_6;
 }
 
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_init(JNIEnv * je, jclass jc, jobject class_loader, jstring j_storage_path) {
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_init(JNIEnv * je, jclass jc, jobject class_loader, jstring j_storage_path) {
 	static pthread_t tid;
 	static const char *storage_path;
 
@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_init(JNIEn
 	init_audio_player();
 }
 
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_login(JNIEnv *je, jclass jc, jstring j_username, jstring j_password) {
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_login(JNIEnv *je, jclass jc, jstring j_username, jstring j_password) {
 
 	const char *username = je->GetStringUTFChars(j_username, 0);
 	const char *password = je->GetStringUTFChars(j_password, 0);
@@ -83,7 +83,7 @@ JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_login(JNIE
 	je->ReleaseStringUTFChars(j_password, password);
 }
 
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_toggleplay(JNIEnv *je, jclass jc, jstring j_uri) {
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_toggleplay(JNIEnv *je, jclass jc, jstring j_uri) {
 	const char *uri = je->GetStringUTFChars(j_uri, 0);
 
 	list<string> string_params;
@@ -94,7 +94,7 @@ JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_toggleplay
 	je->ReleaseStringUTFChars(j_uri, uri);
 }
 
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_playnext(JNIEnv *je, jclass jc, jstring j_uri) {
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_playnext(JNIEnv *je, jclass jc, jstring j_uri) {
 	const char *uri = je->GetStringUTFChars(j_uri, 0);
 
 	list<string> string_params;
@@ -104,22 +104,22 @@ JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_playnext(J
 	je->ReleaseStringUTFChars(j_uri, uri);
 }
 
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_star(JNIEnv *je, jclass jc) {
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_star(JNIEnv *je, jclass jc) {
 	addTask(star, "star");
 }
 
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_unstar(JNIEnv *je, jclass jc) {
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_unstar(JNIEnv *je, jclass jc) {
 	addTask(unstar, "unstar");
 }
 
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_seek(JNIEnv *je, jclass jc, jfloat position) {
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_seek(JNIEnv *je, jclass jc, jfloat position) {
 	list<int> int_params;
 	int_params.push_back((int) (position * 100.0));
 
 	addTask(seek, "seek", int_params);
 }
 
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_destroy(JNIEnv *je, jclass jc) {
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_destroy(JNIEnv *je, jclass jc) {
 	log("Cleanup native code");
 	addTask(destroy, "destroy");
 }
@@ -153,7 +153,7 @@ jclass find_class_from_native_thread(JNIEnv **envSetter) {
 	jclass cls = env->FindClass("java/lang/ClassLoader");
 	jmethodID methodLoadClass = env->GetMethodID(cls, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
 
-	jstring className = env->NewStringUTF("com/spotify/hacks/psyonspotify/LibSpotify");
+	jstring className = env->NewStringUTF("com/spotify/hacks/psyonspotify/LibSpotifyWrapper");
 	jclass result = (jclass) env->CallObjectMethod(s_java_class_loader, methodLoadClass, className);
 	if (!result) {
 		exitl("Cant find the LibSpotify class");

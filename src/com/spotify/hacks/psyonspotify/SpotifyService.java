@@ -89,7 +89,7 @@ public class SpotifyService extends Service {
 
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
 			throw new RuntimeException("Storage card not available");
-		LibSpotify.init(LibSpotify.class.getClassLoader(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.spotify.hacks.psyonspotify");
+		LibSpotifyWrapper.init(LibSpotifyWrapper.class.getClassLoader(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.spotify.hacks.psyonspotify");
 
 		mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
@@ -135,32 +135,32 @@ public class SpotifyService extends Service {
 	}
 
 	public void login(String email, String password, LoginDelegate loginDelegate) {
-		LibSpotify.loginUser(email, password, loginDelegate);
+		LibSpotifyWrapper.loginUser(email, password, loginDelegate);
 
 	}
 
 	public void togglePlay(String uri, PlayerUpdateDelegate playerPositionDelegate) {
-		LibSpotify.togglePlay(uri, playerPositionDelegate);
+		LibSpotifyWrapper.togglePlay(uri, playerPositionDelegate);
 	}
 	
 	public void playNext(String uri, PlayerUpdateDelegate playerPositionDelegate) {
-		LibSpotify.playNext(uri, playerPositionDelegate);
+		LibSpotifyWrapper.playNext(uri, playerPositionDelegate);
 	}
 
 	public void seek(float position) {
-		LibSpotify.seek(position);
+		LibSpotifyWrapper.seek(position);
 	}
 
 	public void star() {
-		LibSpotify.star();
+		LibSpotifyWrapper.star();
 	}
 	
 	public void unStar() {
-		LibSpotify.unstar();
+		LibSpotifyWrapper.unstar();
 	}
 
 	public void destroy() {
-		LibSpotify.destroy();
+		LibSpotifyWrapper.destroy();
 		
 	}
 

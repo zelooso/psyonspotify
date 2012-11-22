@@ -36,7 +36,7 @@ import android.os.Handler;
 import com.spotify.hacks.psyonspotify.SpotifyService.LoginDelegate;
 import com.spotify.hacks.psyonspotify.SpotifyService.PlayerUpdateDelegate;
 
-public class LibSpotify {
+public class LibSpotifyWrapper {
 
 	private static Handler handler = new Handler();
 	private static LoginDelegate mLoginDelegate;

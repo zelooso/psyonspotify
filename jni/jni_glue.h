@@ -32,13 +32,13 @@ void call_static_void_method(const char *method_name);
 
 extern "C" {
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved);
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_init(JNIEnv *je, jclass jc, jobject loader, jstring storage_path);
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_destroy(JNIEnv *je, jclass jc);
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_login(JNIEnv *je, jclass jc, jstring username, jstring password);
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_toggleplay(JNIEnv *je, jclass jc, jstring uri);
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_playnext(JNIEnv *je, jclass jc, jstring j_uri);
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_seek(JNIEnv *je, jclass jc, jfloat position);
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_star(JNIEnv *je, jclass jc);
-JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotify_unstar(JNIEnv *je, jclass jc);
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_init(JNIEnv *je, jclass jc, jobject loader, jstring storage_path);
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_destroy(JNIEnv *je, jclass jc);
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_login(JNIEnv *je, jclass jc, jstring username, jstring password);
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_toggleplay(JNIEnv *je, jclass jc, jstring uri);
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_playnext(JNIEnv *je, jclass jc, jstring j_uri);
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_seek(JNIEnv *je, jclass jc, jfloat position);
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_star(JNIEnv *je, jclass jc);
+JNIEXPORT void JNICALL Java_com_spotify_hacks_psyonspotify_LibSpotifyWrapper_unstar(JNIEnv *je, jclass jc);
 
 }
