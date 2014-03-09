@@ -1,5 +1,5 @@
 
-# Hack: A psytrance discovery Android app using libspotify #
+# A psytrance discovery Android app using libspotify #
 
 The app will fetch the latest psytrance album-release that you haven't already listened to. The player will just loop this album and you can star the tracks you like. If you are tired of the album or don't like it at all you can just press a button to fetch another album.
 
